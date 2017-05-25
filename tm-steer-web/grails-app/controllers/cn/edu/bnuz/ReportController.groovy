@@ -18,17 +18,17 @@ class ReportController {
     def show(String userId, Long id) {
         report(new ReportRequest(
                 reportService: 'tm-report',
-                reportName: 'Inspector_view',
+                reportName: 'observation_view',
                 format: 'pdf',
                 parameters: [idKey:'formId', formId: id, userId: securityService.userId]
         ))
 
     }
 
-    def  unsupervised() {
+    def observePriority() {
         report(new ReportRequest(
                 reportService: 'tm-report',
-                reportName: 'teachers-priority-report',
+                reportName: 'observe-priority-list',
                 format: 'xlsx'
         ))
     }

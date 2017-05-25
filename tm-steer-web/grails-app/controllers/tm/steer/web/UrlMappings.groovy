@@ -5,10 +5,10 @@ class UrlMappings {
     static mappings = {
         "/users"(resources: 'user', includes: []) {
             "/schedules"(resources: 'schedule', includes: ['index'])
-            "/observations"(resources: 'observationForm', includes: ['index'])
+            "/observations"(resources: 'observationForm', includes: ['index','show'])
             "/reports"(resources: 'report', includes: ['index','show']){
                 collection {
-                    "/unsupervised"(controller: 'report', action: 'unsupervised', method: 'GET')
+                    "/observe-priority"(controller: 'report', action: 'observePriority', method: 'GET')
                     "/reward"(controller: 'report', action: 'reward', method: 'GET')
                 }
             }

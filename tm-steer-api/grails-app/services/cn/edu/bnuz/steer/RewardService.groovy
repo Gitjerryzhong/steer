@@ -69,13 +69,16 @@ order by substring(form.supervisorDate,6,2)
         if(!observerSettingService.isAdmin(userId)) {
             throw new ForbiddenException()
         }
-        def supervisor=messageSource.getMessage("main.supervisor.university",null, Locale.CHINA)
+        def type=messageSource.getMessage("main.supervisor.university",null, Locale.CHINA)
         ObservationForm.executeUpdate'''
 update ObservationForm f
 set f.rewardDate = now()
 where id in(
-select v.id from ObservationView v where v.termid = :termId and v.status > 0 and substring(v.supervisorDate,6,2) = :month and v.typeName = :observerType
+select v.id from ObservationView v
+where v.termid = :termId and v.status > 0
+and substring(v.supervisorDate,6,2) = :month
+and v.typeName = :type
 )
-''',[termId: term.id, month: month, type: supervisor]
+''',[termId: term.id, month: month, type: type]
     }
 }

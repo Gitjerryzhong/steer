@@ -46,8 +46,8 @@ and (t.id like :query or t.name like :query)
         def type =messageSource.getMessage("main.supervisor.college",null, Locale.CHINA)
         def result =ObservationForm.executeQuery '''
 select new map(
-  observer.name as steer,
-  count(*) as supervisorTimes,
+  observer.name as observer,
+  count(*) as observeTimes,
   sum(form.totalSection) as totalSection
 )
 from ObservationForm form
